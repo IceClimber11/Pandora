@@ -2,10 +2,12 @@ package com.iceclimber11.pandora;
 
 import java.io.File;
 
-import com.iceclimber11.pandora.Blocks.PandoraBlock;
+import com.iceclimber11.pandora.Blocks.PandoraBlockCreator;
+import com.iceclimber11.pandora.core.creativetab.PandoraCreativeTabs;
 import com.iceclimber11.pandora.core.handler.ConfigurationHandeler;
+import com.iceclimber11.pandora.core.handler.LocalizationHandler;
 import com.iceclimber11.pandora.core.proxy.CommonProxy;
-import com.iceclimber11.pandora.lib.Refercences;
+import com.iceclimber11.pandora.lib.References;
 
 import cpw.mods.fml.common.Mod;
 import cpw.mods.fml.common.Mod.EventHandler;
@@ -17,24 +19,30 @@ import cpw.mods.fml.common.network.NetworkMod;
 
 
 
-@Mod(modid=Refercences.MODID, name=Refercences.MODNAME, version=Refercences.MODID)
+@Mod(modid=References.MODID, name=References.MODNAME, version=References.MODID)
 @NetworkMod(clientSideRequired=true, serverSideRequired=false)
 public class PandoraSpaceMod {
 
 
 	@SidedProxy//Proxy
-	(clientSide = Refercences.ClientProxy_Location, serverSide = Refercences.CommonProxy_Location)
+	(clientSide = References.ClientProxy_Location, serverSide = References.CommonProxy_Location)
 		public static CommonProxy Proxy;
 	
     @EventHandler //Pre Initiation Stuffs
     public void preInit(FMLPreInitializationEvent event) {
-         //Config File
-    	ConfigurationHandeler.init(new File(event.getModConfigurationDirectory().getAbsolutePath() + File.separator + Refercences.MODID + ".cfg"));
     	
+         /*				Config				*/
+    	ConfigurationHandeler.init(new File(event.getModConfigurationDirectory().getAbsolutePath() + File.separator + References.MODID + ".cfg"));
+    	/*				Language			*/
+    	LocalizationHandler.init();
+    	/*				Creative Tab		*/
+    	PandoraCreativeTabs.init();
+    	/*				Blocks				*/
+    	PandoraBlockCreator.init();
     }	
     @EventHandler //Initiation Stuffs
     public void Init(FMLInitializationEvent event){
-    	PandoraBlock.init();
+
     }
     @EventHandler //Post initiation Stuffs
     public void postInit(FMLPostInitializationEvent event) {

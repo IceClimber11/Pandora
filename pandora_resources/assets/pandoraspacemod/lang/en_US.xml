@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCUMENT properties SYSTEM "http://java.sun.dtd.properties.dtd">
+<properties version="1.0">
+	<comment>English (en_US) Localization File</comment>
+	<entry key="tile.pandoradirt.name">Pandora Dirt</entry>
+</properties>
