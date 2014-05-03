@@ -1,5 +1,9 @@
 package com.iceclimber11.pandora;
 
+import java.io.File;
+
+import com.iceclimber11.pandora.Blocks.PandoraBlock;
+import com.iceclimber11.pandora.core.handler.ConfigurationHandeler;
 import com.iceclimber11.pandora.core.proxy.CommonProxy;
 import com.iceclimber11.pandora.lib.Refercences;
 
@@ -24,11 +28,13 @@ public class PandoraSpaceMod {
 	
     @EventHandler //Pre Initiation Stuffs
     public void preInit(FMLPreInitializationEvent event) {
-         
+         //Config File
+    	ConfigurationHandeler.init(new File(event.getModConfigurationDirectory().getAbsolutePath() + File.separator + Refercences.MODID + ".cfg"));
+    	
     }	
     @EventHandler //Initiation Stuffs
     public void Init(FMLInitializationEvent event){
-    	
+    	PandoraBlock.init();
     }
     @EventHandler //Post initiation Stuffs
     public void postInit(FMLPostInitializationEvent event) {
